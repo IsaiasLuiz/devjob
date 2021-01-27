@@ -1,0 +1,11 @@
+<h1 class="text-center m-5">Vagas cadastradas</h1>
+<div class="responsive-cards">
+    <div class="card m-4" style="width: 18rem;" *ngFor="let job of jobs">
+        <div class="card-body">
+            <h5 class="card-title">{{job.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{job.seniority}}</h6>
+            <p class="card-text">{{job.description}}</p>
+            <button (click)="delete(job.id)" class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
+</div>

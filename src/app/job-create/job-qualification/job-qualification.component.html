@@ -1,0 +1,110 @@
+<div class="container card-body">
+    <h1 class="text-center">Remunerações</h1>
+    <div class="px-5 pb-2 border">
+        <ngb-alert class="mt-1" *ngIf="hasError" (closed)="hasError = false">Ops, preencha os dados corretamente!</ngb-alert>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Salário da vaga</label>
+                <input
+                    [(ngModel)]="job.remuneration"
+                    [ngClass]="{'border-danger': !job.remuneration && submitted}"
+                    autocomplete="off" class="form-control" type="number"
+                    placeholder="Digite aqui o salário da vaga"
+                />
+              </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="isRemoteWork" [(ngModel)]="job.isRemoteWork">
+                    <label class="form-check-label" for="isRemoteWork">
+                      Trabalho remoto
+                    </label>
+                  </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Senioridade da vaga</label>
+                <input
+                    [(ngModel)]="job.seniority"
+                    [ngClass]="{'border-danger': !job.seniority && submitted}"
+                    autocomplete="off" class="form-control" type="text"
+                    placeholder="Digite aqui a senioridade da vaga"
+                />
+              </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                Tipo de vaga
+                <div class="form-check">
+                    <label class="form-check-label" for="vacancyClt" (click)="job.vacancyType = vacancyCLT">
+                        <input class="form-check-input" type="radio" name="vacancyType" id="vacancyClt" checked>
+                      CLT
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="vacancyPj" (click)="job.vacancyType = vacancyPJ">
+                        <input class="form-check-input" type="radio" name="vacancyType" id="vacancyPj">
+                      PJ
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <label>Benefícios</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input
+                        [(ngModel)]="benefit"
+                        [ngClass]="{'border-danger': job.benefits.length <= 0 && submitted}"
+                        class="form-control d-inline-block mr-2" type="text"
+                        placeholder="Digite aqui o benefício"
+                    />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input
+                    [(ngModel)]="benefitValue"
+                        class="form-control d-inline-block mr-2" type="number"
+                        placeholder="Digite aqui o valor"
+                    />
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <button 
+                        (click)="job.benefits.push({'description': benefit, 'value': benefitValue});benefit='';benefitValue=0"
+                        type="button" class="btn btn-outline-success " >+</button>
+                </div>
+            </div>
+            <div class="col-md-5 mt-1">
+                <ul class="responsive-list">
+                    <li *ngFor="let item of job.benefits;let i = index">
+                        <span class="d-block">
+                            {{'Benefício: ' + item.description}}
+                        </span>
+                        <span  class="d-block">
+                            {{item.value > 0 ? 'Valor: ' + item.value : ''}}
+                        </span>
+                        <button (click)="job.benefits.splice(i, 1)" class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+                    </li>              
+                </ul>
+            </div>
+        </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-warning btn-lg float-left" (click)="newScreen.emit('job-description')">Anterior</button>
+            <button type="button" class="btn btn-success btn-lg float-right" (click)="submit()">Próximo</button>
+        </div>
+    </div>
+</div>

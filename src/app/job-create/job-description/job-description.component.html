@@ -1,0 +1,107 @@
+<div class="container card-body">
+    <h1 class="text-center">Características</h1>
+    <div class="px-5 pb-2 border">
+        <ngb-alert class="mt-1" *ngIf="hasError" (closed)="hasError = false">Ops, preencha os dados corretamente!</ngb-alert>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name">Titulo da vaga</label>
+                <input
+                    [ngClass]="{'border-danger': !job.title && submitted}"
+                    class="form-control" type="text"
+                    placeholder="Digite aqui o titulo da vaga"
+                    [(ngModel)]="job.title"
+                />
+              </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name">Descrição da vaga</label>
+                <textarea
+                    [ngClass]="{'border-danger': !job.description && submitted}"
+                    style="resize: none;" class="form-control" 
+                    placeholder="Digite aqui uma descrição para a vaga" [(ngModel)]="job.description" ></textarea>
+              </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="name" class="d-block">Qualificações</label>
+                    <input
+                        [(ngModel)]="qualification"
+                        [ngClass]="{'border-danger': job.qualifications.length <= 0 && submitted}"                   
+                        class="form-control d-inline-block mr-2" type="text" style="width: 85%"
+                        placeholder="Digite aqui as qualidades interpessoais que o candidato precisa ter"
+                    />
+                    <button type="button" class="btn btn-outline-success "
+                        (click)="job.qualifications.push({description: qualification});qualification=''"
+                    >
+                        +
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4  mt-1">
+                <ul class="responsive-list">
+                    <li *ngFor="let item of job.qualifications; let i = index">
+                        <span>{{item.description}}</span>
+                        <button (click)="job.qualifications.splice(i, 1)"  class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="name" class="d-block">Tecnologias</label>
+                    <input
+                    [(ngModel)]="tecnology"
+                        [ngClass]="{'border-danger': job.technologies.length <= 0 && submitted}"  
+                        autocomplete="off" class="form-control d-inline-block mr-2" type="text" style="width: 85%"
+                        placeholder="Digite aqui as tecnologias que são necessarias"
+                    />
+                    <button (click)="job.technologies.push({name: tecnology});tecnology=''"
+                    type="button" class="btn btn-outline-success " >+</button>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1">
+                <ul class="responsive-list">
+                    <li *ngFor="let item of job.technologies;let i = index">
+                        <span>{{item.name}}</span>
+                        <button (click)="job.technologies.splice(i, 1)"  class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+                    </li>               
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="name" class="d-block">Responsabilidades</label>
+                    <input
+                        [(ngModel)]="responsibility"
+                        [ngClass]="{'border-danger': job.responsibilities.length <= 0 && submitted}"  
+                        autocomplete="off" class="form-control d-inline-block mr-2" type="text" style="width: 85%"
+                        placeholder="Digite aqui as responsabilidades"
+                    />
+                    <button (click)="job.responsibilities.push({description: responsibility});responsibility=''"
+                        type="button" class="btn btn-outline-success " >+</button>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1">
+                <ul class="responsive-list">
+                    <li *ngFor="let item of job.responsibilities; let i = index">
+                        <span>{{item.description}}</span>
+                        <button (click)="job.responsibilities.splice(i, 1)"  class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+                    </li>               
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-lg float-right" (click)="submit()">Próximo</button>
+            </div>
+        </div>
+    </div>
+</div>

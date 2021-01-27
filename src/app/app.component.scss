@@ -1,0 +1,32 @@
+.side-bar {
+    width: 15vw;
+    height: 100vh;
+    background-color: rgb(11, 157, 201);
+}
+
+.page {
+    width: 85vw;
+    height: 100vh;
+}
+
+ul.job-menu {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.job-menu li {
+    height: 70px;
+    outline: none;
+    list-style: none;
+    padding: 5px;
+    background-color: rgb(11, 157, 201);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.1px solid #fff;
+}
+
+ul.job-menu li a {
+    color: #fff;
+    font-size: 1.3rem;
+}

@@ -1,0 +1,131 @@
+<div class="container card-body">
+    <h1 class="text-center">Sobre a empresa</h1>
+    <div class="px-5 pb-2 border">
+        <ngb-alert class="mt-1" *ngIf="hasError" (closed)="hasError = false">Ops, preencha os dados corretamente!</ngb-alert>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Nome da empresa</label>
+                <input
+                    [(ngModel)]="job.company.name"
+                    [ngClass]="{'border-danger': !job.company.name && submitted}"
+                    class="form-control" type="text"
+                    placeholder="Digite aqui o nome da empresa"
+                />
+              </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Legado da empresa</label>
+                <input
+                    [(ngModel)]="job.company.legacy"
+                    [ngClass]="{'border-danger': !job.company.legacy && submitted}"
+                    class="form-control" type="text"
+                    placeholder="Digite aqui o legado da empresa"
+                />
+              </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="name" class="d-block">Valores da sua empresa</label>
+                    <input
+                        [(ngModel)]="companyValue"
+                        [ngClass]="{'border-danger': job.company.values.length <= 0 && submitted}"  
+                        class="form-control d-inline-block mr-2" type="text" style="width: 85%"
+                        placeholder="Digite aqui os valores da sua empresa"
+                    />
+                    <button (click)="job.company.values.push({description: companyValue});companyValue=''"
+                        type="button" class="btn btn-outline-success " >+</button>
+                </div>
+            </div>
+            <div class="col-md-4 mt-1">
+                <ul class="responsive-list">
+                    <li *ngFor="let item of job.company.values;let i = index">
+                        <span>{{item.description}}</span>
+                        <button (click)="job.company.values.splice(i, 1)" class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+                    </li>              
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Estado da empresa</label>
+                    <input
+                        [(ngModel)]="job.location.state"
+                        [ngClass]="{'border-danger': !job.location.state && submitted}"
+                        class="form-control d-inline-block mr-2" type="text"
+                        placeholder="Digite aqui o estado"
+                    />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Cidade da empresa</label>
+                    <input
+                        [(ngModel)]="job.location.city"
+                        [ngClass]="{'border-danger': !job.location.city && submitted}"
+                        class="form-control d-inline-block mr-2" type="text"
+                        placeholder="Digite aqui a cidade"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Telefone de contato</label>
+                <input
+                    [(ngModel)]="job.contact.phone"
+                    [ngClass]="{'border-danger': !job.contact.phone && submitted}"
+                    class="form-control" type="text"
+                    placeholder="Digite aqui o telefone de contato"
+                />
+              </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input
+                        [(ngModel)]="job.contact.mail"
+                        [ngClass]="{'border-danger': !job.contact.mail && submitted}"
+                        class="form-control" type="text"
+                        placeholder="Digite aqui o e-mail de contato"
+                    />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                  <label>Whatsapp</label>
+                  <input
+                    [(ngModel)]="job.contact.whatsapp"
+                    [ngClass]="{'border-danger': !job.contact.whatsapp && submitted}"
+                    class="form-control" type="text"
+                    placeholder="Digite aqui o whatsapp de contato"
+                  />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Linkedin</label>
+                    <input
+                        [(ngModel)]="job.contact.linkedin"
+                        [ngClass]="{'border-danger': !job.contact.linkedin && submitted}"
+                        class="form-control" type="text"
+                        placeholder="Digite aqui o linkedin de contato"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-warning btn-lg float-left" (click)="newScreen.emit('job-qualification')">Anterior</button>
+                <button type="button" class="btn btn-success btn-lg float-right" (click)="submit()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

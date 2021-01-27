@@ -1,0 +1,11 @@
+<div>
+  <job-description [job]="job"
+    *ngIf="state == 'job-description'" (newScreen)="gotToNewScreen($event)">
+  </job-description>
+  <job-qualification [job]="job" 
+    *ngIf="state == 'job-qualification'" (newScreen)="gotToNewScreen($event)">
+  </job-qualification>
+  <job-company [job]="job"
+    *ngIf="state == 'job-company'" (newScreen)="gotToNewScreen($event)" (onConfirm)="saveJob()">
+  </job-company>
+</div>
